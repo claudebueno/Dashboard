@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+
+    <script src="https://code.jquery.com/jquery-3.2.1.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.js"></script>
+    <style>
+        .chart-container {
+            width: 600px;
+            height: 300px;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .polarArea-container {
+            width: 290px;
+            height: 290px;
+            background-color: #ccded2;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+
+        .barChart-container {
+            width: 290px;
+            height: 290px;
+            background-color: #B3DBE5;
+            border: 1px solid #ddd;
+            padding: 10px;
+            border-radius: 6px;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+
+<body>
+<div class="chart-container">
+    <canvas id="line-chart"></canvas>
+</div>
+
+<div class="polarArea-container">
+    <canvas id="line-chart1"></canvas>
+</div>
+
+<div class="barChart-container">
+    <canvas id="line-chart2" width="290" height="290"></canvas>
+</div>
+
+<script>
+    var ctx = $("#line-chart");
+    var lineChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
+            datasets: [
+                {
+                    label: "2017",
+                    data: [10, 8, 6, 10, 12, 8, 18, 22, 20, 14, 5, 9],
+                    backgroundColor: "rgba(33, 62, 131, 0.69)",
+                    borderColor: "rgb(33,62,131)",
+                    borderWidth: 1,
+                    pointRadius: 4,
+                    pointHoverRadius: 4,
+                    pointBorderColor: "black",
+                    radius: 4
+                }
+            ]
+        },
+        options: {
+            maintainAspectRatio: false,
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true,
+                        max: 28,
+                        stepSize: 4
+                    }
+                }]
+            }
+        }
+    });
+
+    // A PolarArea
+    var ctx1 = $("#line-chart1");
+    var myPolarArea = new Chart(ctx1, {
+        type: 'polarArea',
+        data: {
+            labels: ['Rouge', 'Bleu', 'Vert'],
+            datasets: [
+                {
+                    data: [7, 6, 10],
+                    backgroundColor: ['#CB2027', '#43609C', '#379B35'],
+                }
+            ]
+        },
+        options: {}
+    });
+
+    // A BarChart
+    var ctx2 = $("#line-chart2");
+    var myBarChart = new Chart(ctx2, {
+        type: 'bar',
+        data: {
+            labels: ["Red", "Blue", "Yellow", "Green", "Purple", "Orange"],
+            datasets: [{
+                label: '# of Votes',
+                data: [12, 19, 3, 5, 2, 3],
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255,99,132,1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                yAxes: [{
+                    ticks: {
+                        beginAtZero: true
+                    }
+                }]
+            }
+        }
+    });
+
+</script>
+
+<footer>
+</footer>
+</body>
+
+</html>
